@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ results.title  }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ results.title }}</h1>
+    Author: {{ results.author }} <br />
+    Published: {{ results.year }} <br />
+    ISBN: {{ results.isbn }} <br />
+
+    {% if goodreads %}
+    Information from GoodReads.com:<br/>
+    Average rating: {{ goodreads["books"][0]["average_rating"]}} from {{ goodreads["books"][0]["work_ratings_count"]}} reviews.<br/>
+
+    {% else %}
+    No reviews on GoodReads.com                                                              
+    {% endif %}
+    
+    <form action="{{ url_for('review') }}" method="post">
+        <input type="hidden" value="{{ results.isbn }}" name="isbn" >
+         <div class="form-group">
+        {% if myreview %}
+            <input class="form-control" type="text" name="review" value="{{myreview["text"]}}">
+        {% else %}
+            <input class="form-control" type="text" name="review" placeholder="type your review here"> 
+        {% endif %}
+            
+        </div>
+        <div class="form-group">
+        {% if myreview %}
+        <button class="btn btn-primary">Update Review</button>
+        {% else %}
+        <button class="btn btn-primary">Submit Review</button>
+        {% endif %}
+        </div>
+    </form> 
+    <ul>
+        {% for next in reviews %}
+        <li>
+            {{ next.firstname }} {{ next.lastname}} ({{ next.email }}) said:<br/> <em>{{ next.text }}</em> <br/> 
+        </li>
+        {% endfor %}
+    </ul>
+
+                                                                                                                                   
+                                                                                                                                   
+
+{% endblock %}

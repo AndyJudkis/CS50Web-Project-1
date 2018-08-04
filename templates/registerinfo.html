@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Account
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new account:</h1>
+    <h3> {{message}} </h3>
+    <form action="{{ url_for('newuser') }}" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="email" placeholder="email">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="firstName" placeholder="first name">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="lastName" placeholder="last name">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Create</button>
+        </div>
+    </form>
+
+{% endblock %}

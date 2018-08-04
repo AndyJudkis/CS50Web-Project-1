@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <br />
+            {% if "uid" in session %}
+            Logged in as: {{ session["email"]}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/">Search</a>&nbsp;&nbsp;|&nbsp;&nbsp<a href="logout">Log out</a><br /><br />
+            {% endif %}
+            
+            {% block body %}
+            {% endblock %}
+            <br />
+            
+
+        </div>
+    </body>
+</html>
